@@ -60,11 +60,11 @@ const data: TNodeFile[] = [
   },
 ];
 
-export default function page() {
+export default function Page() {
   return (
     <div className="flex flex-col justify-center items-start w-screen h-screen">
-      {data.map((node) => {
-        return <NodeComponent node={node} />;
+      {data.map((node, index) => {
+        return <NodeComponent key={index} node={node} />;
       })}
     </div>
   );
@@ -89,8 +89,8 @@ const NodeComponent = ({ node }: { node: TNodeFile }) => {
       {node.children &&
         open &&
         node.children?.length &&
-        node.children.map((childNode) => {
-          return <NodeComponent node={childNode} />;
+        node.children.map((childNode, index) => {
+          return <NodeComponent key={index} node={childNode} />;
         })}
     </div>
   );

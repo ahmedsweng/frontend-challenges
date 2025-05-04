@@ -1,19 +1,19 @@
 "use client";
 
 import { Redo, Undo } from "lucide-react";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 
 type TPoint = {
   x: number;
   y: number;
 };
 
-function page() {
+function Page() {
   const [points, setPoints] = useState<TPoint[]>([]);
   const [undoStack, setUndoStack] = useState<TPoint[]>([]);
-  const [redoStack, setRedoStack] = useState<TPoint[]>([]);
+  const [_, setRedoStack] = useState<TPoint[]>([]);
 
-  const handleMouseClick = (e: any) => {
+  const handleMouseClick = (e: MouseEvent) => {
     setPoints((prev) => [...prev, { x: e.clientX, y: e.clientY }]);
   };
 
@@ -34,12 +34,6 @@ function page() {
     setPoints((prev) => [...prev, toBeRedoPoint]);
   };
 
-  const handleReset = () => {
-    setPoints([]);
-    setUndoStack([]);
-    setRedoStack([]);
-  };
-
   return (
     <div className="w-screen h-screen">
       <button
@@ -56,10 +50,7 @@ function page() {
       >
         <Redo />
       </button>
-      <div
-        className="w-full h-full relative"
-        onClick={(e) => handleMouseClick(e)}
-      >
+      <div className="w-full h-full relative" onClick={handleMouseClick}>
         {points.map((point, index) => {
           return (
             <div
@@ -77,4 +68,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

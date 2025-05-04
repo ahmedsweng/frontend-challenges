@@ -24,7 +24,7 @@ type TOption = {
   state: "DEFAULT" | "SELECTED" | "DONOTMATCH";
 };
 
-function page() {
+function Page() {
   const countries = Object.keys(data);
   const capitals = Object.values(data);
   const [selected, setSelected] = useState<TOption | undefined>();
@@ -144,4 +144,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
